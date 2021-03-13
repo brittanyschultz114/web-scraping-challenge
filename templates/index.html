@@ -33,9 +33,9 @@
     <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h2 class="heading">Latest Mars News</h2>
+        <h1 class="heading">Latest Mars News</h1>
         <b><h3 class="heading">{{mars.news_title}}</h3></b>
-        <h4>{{mars.news_paragraph}}</h4>
+        <p>{{mars.news_paragraph}}</p>
     
     <div class="container">
       <div class="row">
@@ -48,14 +48,10 @@
         <div class="col-md-1">
         </div>
         <div class="col-md-5" style="padding-top: 20px;">
-            <!-- <span class="border">
-            <b><h3>Current Weather On Mars</h3></b>
-              <p>{{mars.mars_weather}}</p>
-            </span> -->
             <div class="row" style="padding-left: 16px;">
               <h3 class="header" > Mars Facts</h3>
                 <table>
-                  {{mars.mars_facts}}
+                  {{mars.mars_facts|safe}}
                 </table>
             </div>
         </div>
@@ -67,34 +63,19 @@
             <h2 class="heading">Mars Hemispheres</h2>
         </div>
         <div class="col-md-6">
-            {% for x in mars.hemisphere_dictionary %}
+            {% for x in mars.hemisphere_dictionary [0:2] %}
             <h4>{{x.title}}</h4>
-            <img src="{{x.img_url}}">
-            {% endfor %}
-
-            {% for x in mars.hemisphere_dictionary %}
-            <h4>{{x.title}}</h4> 
             <img src="{{x.img_url}}">
             {% endfor %}
         </div>
         <div class="col-md-6">
-            {% for x in mars.hemisphere_dictionary %}
+            {% for x in mars.hemisphere_dictionary [2:4]%}
             <h4>{{x.title}}</h4> 
-            <img src="{{x.img_url}}">
-            {% endfor %}
-            
-            {% for x in mars.hemisphere_dictionary %}
-            <h4>{{x.title}}</h4>
             <img src="{{x.img_url}}">
             {% endfor %}
         </div>
       </div>
     </div>
-    </div>
-      </div>
-    </div>
-  </div>
-
   </div>
 </body>
 
