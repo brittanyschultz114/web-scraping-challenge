@@ -2,6 +2,8 @@ from bs4 import BeautifulSoup
 from splinter import Browser
 import pandas as pd
 import requests
+import pymongo
+from flask import Flask, render_template
 from webdriver_manager.chrome import ChromeDriverManager
 
 def init_browswer():
@@ -75,7 +77,7 @@ def scrape():
         mh_img_url.append(img_link)
 
     hemi_dict = zip(mh_names, mh_img_url)
-    hemisphere_dictionary = []
+    mars['hemisphere_dictionary'] = []
 
     for title, img in hemi_dict:
         mars_dict = {}
