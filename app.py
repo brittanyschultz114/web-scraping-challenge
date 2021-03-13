@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect
 from flask_pymongo import PyMongo
 import scrape_mars
 
+
 # Create an instance of Flask
 app = Flask(__name__)
 
@@ -23,7 +24,7 @@ def scrape():
     # Run the scrape function
     mars = mongo.db.mars
     mars_data=scrape_mars.scrape()
-    mars.update_one({},mars_data, upsert=true)
+    mars.update({},mars_data, upsert=True)
     return redirect("/", code = 302)
 
 if __name__ == "__main__":

@@ -6,9 +6,9 @@ import pymongo
 from flask import Flask, render_template
 from webdriver_manager.chrome import ChromeDriverManager
 
-def init_browswer():
+def init_browser():
     executable_path = {"executable_path": ChromeDriverManager().install()}
-    browser = Browser("chrome", **executable_path)
+    return Browser("chrome", **executable_path, headless = False)
 
 
 def scrape():
@@ -21,7 +21,7 @@ def scrape():
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
 
-    mars['news_title'] = soup.find("div", class_ = "content_title").text
+    mars['news_title'] = soup.find_all("div", class_ = "content_title")[1].text
     mars['news_paragraph'] = soup.find("div", class_ = "article_teaser_body").text
 
     url = 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/index.html'
@@ -83,6 +83,6 @@ def scrape():
         mars_dict = {}
         mars_dict['title'] = title
         mars_dict['img_url'] = img
-        hemisphere_dictionary.append(mars_dict)
+        mars['hemisphere_dictionary'].append(mars_dict)
 
     return mars
